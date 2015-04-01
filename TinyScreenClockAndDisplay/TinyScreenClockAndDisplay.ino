@@ -1,3 +1,5 @@
+// Project by PacksGamingHD
+
 #define	BLACK           0x00
 #define	BLUE            0xE0
 #define	RED             0x03
@@ -17,16 +19,16 @@
 #include <avr/power.h>
 #include <avr/sleep.h>
 SSD1331 display = SSD1331(0);
-int ledPin =  13;    // LED connected to digital pin 13
-int INT_PIN = 3; // INTerrupt pin from the RTC. On Arduino Uno, this should be mapped to digital pin 2 or pin 3, which support external interrupts
-int int_number = 1; // On Arduino Uno, INT0 corresponds to pin 2, and INT1 to pin 3
+int ledPin =  13;
+int INT_PIN = 3;
+int int_number = 1;
 
 DS1339 RTC = DS1339();
 
 void setup(void) {
   Wire.begin();
   display.begin();
-  RTC.start(); // ensure RTC oscillator is running, if not already
+  RTC.start();
     display.fontColor(WHITE,BLACK);
       display.setFont(liberationSans_10ptFontInfo);
     display.setCursor(0,50);
@@ -44,18 +46,13 @@ void loop() {
   unsigned int year;
   display.setFont(liberationSans_10ptFontInfo);
   display.fontColor(BLACK,BLACK);
-  RTC.readTime(); // update RTC library's buffers from chip
+  RTC.readTime();
   second = RTC.getSeconds();
         minute = RTC.getMinutes();
         hour = RTC.getHours();        
         day = RTC.getDays();
         month = RTC.getMonths();        
-        year = RTC.getYears();    
-  /*for(int i=0;i<5; i++)
-  {
-    display.setCursor(0,i*12);
-    display.print("                    ");
-  }*/
+        year = RTC.getYears();
   display.setFont(liberationSans_10ptFontInfo);
   display.setCursor(0,10);
   display.fontColor(BLUE,BLACK);
@@ -73,7 +70,4 @@ void loop() {
   display.print(":");
   display.print(second);
   display.setCursor(0,50);
-
-  //while(1);
-  
 }
