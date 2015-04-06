@@ -29,9 +29,9 @@ void setup(void) {
   Wire.begin();
   display.begin();
   RTC.start();
-    display.fontColor(WHITE,BLACK);
-      display.setFont(liberationSans_10ptFontInfo);
-    display.setCursor(0,50);
+  display.fontColor(WHITE,BLACK);
+  display.setFont(liberationSans_10ptFontInfo);
+  display.setCursor(0,50);
   display.print("Sammy");
   display.print(" Watch");
   delay(2000);
@@ -47,7 +47,7 @@ void loop() {
   display.setFont(liberationSans_10ptFontInfo);
   display.fontColor(BLACK,BLACK);
   RTC.readTime();
-  second = RTC.getSeconds();
+        second = RTC.getSeconds();
         minute = RTC.getMinutes();
         hour = RTC.getHours();        
         day = RTC.getDays();
@@ -64,10 +64,38 @@ void loop() {
   display.print(year);
   display.setCursor(0,30);
   display.fontColor(GREEN,BLACK);
+  if (RTC.getHours() < 9)
+   {
+     display.print("");
+     display.print(hour);
+   }
+   else 
+   {
   display.print(hour);
+   }
   display.print(":");
-  display.print(minute);
+  if (RTC.getMinutes() < 10)
+   {
+     display.fontColor(YELLOW,BLACK);
+     display.print("0");
+     display.print(minute);
+   }
+   else 
+   {
+     display.fontColor(YELLOW,BLACK);
+     display.print(minute);
+   }
+  display.fontColor(GREEN,BLACK);
   display.print(":");
-  display.print(second);
-  display.setCursor(0,50);
+   if (RTC.getSeconds() < 10)
+   {
+     display.fontColor(RED,BLACK);
+     display.print("0");
+     display.print(second);
+   }
+   else 
+   {
+     display.fontColor(RED,BLACK);
+     display.print(second);
+   }
 }
