@@ -25,7 +25,7 @@ int int_number = 1;
 
 DS1339 RTC = DS1339();
 
-void setup(void) {
+void setup(void) { // setup
   Wire.begin();
   display.begin();
   RTC.start();
@@ -44,7 +44,6 @@ void loop() {
   unsigned char month;
   unsigned char day;
   unsigned int year;
-  display.setFont(liberationSans_10ptFontInfo);
   display.fontColor(BLACK,BLACK);
   RTC.readTime();
         second = RTC.getSeconds();
@@ -53,7 +52,8 @@ void loop() {
         day = RTC.getDays();
         month = RTC.getMonths();        
         year = RTC.getYears();
-  display.setFont(liberationSans_10ptFontInfo);
+        
+  // Date      
   display.setCursor(0,10);
   display.fontColor(BLUE,BLACK);
   delay(10);
@@ -62,19 +62,24 @@ void loop() {
   display.print(month);
   display.print("/");
   display.print(year);
+  
+  // Time
   display.setCursor(0,30);
   display.fontColor(GREEN,BLACK);
-  if (RTC.getHours() < 9)
+  
+  if (RTC.getHours() < 9) // if hours under 9
    {
-     display.print("");
+     display.print("0");
      display.print(hour);
    }
    else 
    {
   display.print(hour);
    }
+   
   display.print(":");
-  if (RTC.getMinutes() < 10)
+  
+  if (RTC.getMinutes() < 10) // if minutes under 10
    {
      display.fontColor(YELLOW,BLACK);
      display.print("0");
@@ -85,9 +90,12 @@ void loop() {
      display.fontColor(YELLOW,BLACK);
      display.print(minute);
    }
-  display.fontColor(GREEN,BLACK);
+   
+  display.fontColor(GREEN,BLACK); // set color
+  
   display.print(":");
-   if (RTC.getSeconds() < 10)
+  
+   if (RTC.getSeconds() < 10) // if seconds under 10
    {
      display.fontColor(RED,BLACK);
      display.print("0");
