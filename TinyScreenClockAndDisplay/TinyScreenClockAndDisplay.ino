@@ -29,12 +29,8 @@ void setup(void) { // setup
   Wire.begin();
   display.begin();
   RTC.start();
-  display.fontColor(WHITE,BLACK);
-  display.setFont(liberationSans_10ptFontInfo);
-  display.setCursor(0,50);
-  display.print("Sammy");
-  display.print(" Watch");
-  delay(2000);
+  display.fontColor(GREEN,BLACK);
+  display.setFont(liberationSans_16ptFontInfo);
 }
 
 void loop() {
@@ -66,17 +62,7 @@ void loop() {
   // Time
   display.setCursor(0,30);
   display.fontColor(GREEN,BLACK);
-  
-  if (RTC.getHours() < 9) // if hours under 9
-   {
-     display.print("0");
-     display.print(hour);
-   }
-   else 
-   {
   display.print(hour);
-   }
-   
   display.print(":");
   
   if (RTC.getMinutes() < 10) // if minutes under 10
