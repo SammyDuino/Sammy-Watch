@@ -28,7 +28,11 @@ void setup(void) { // setup
   display.begin();
   RTC.start();
   display.fontColor(GREEN,BLACK);
-  display.setFont(liberationSans_16ptFontInfo);
+  display.setFont(liberationSans_10ptFontInfo);
+  display.setCursor(0,30);
+  display.print("Sammy Watch");
+  delay(2000);
+  display.clearWindow(x,x,x,x);
 }
 
 void loop() {
@@ -46,6 +50,8 @@ void loop() {
         day = RTC.getDays();
         month = RTC.getMonths();        
         year = RTC.getYears();
+        
+  display.setFont(liberationSans_10ptFontInfo);
         
   // Date      
   display.setCursor(0,10);
