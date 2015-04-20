@@ -29,10 +29,10 @@ void setup(void) { // setup
   RTC.start();
   display.fontColor(GREEN,BLACK);
   display.setFont(liberationSans_16ptFontInfo);
-  display.setCursor(0,30);
+  display.setCursor(10);
   display.print("Watch");
   delay(2000);
-  display.clearWindow(x,x,x,x);
+  display.clearWindow(0,0,0,0);
 }
 
 void loop() {
